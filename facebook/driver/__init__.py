@@ -1,0 +1,71 @@
+import os
+import platform
+
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
+
+
+class Selenium:
+    def __init__(self, total_scrolls = 5000, scroll_time = 5):
+        self.old_height = 0
+        self.current_scrolls = 0
+        self.total_scrolls = total_scrolls
+        self.scroll_time = scroll_time
+        self.time_limit = 0
+        self.driver = None
+        self.init_selenium()
+
+    def execute_script(self, link_user: str):
+        raise NotImplementedError
+
+    def init_selenium(self):
+        raise NotImplementedError
+
+    def get_options(self):
+        raise NotImplementedError
+    
+    def quit(self, e=False):
+        self.driver.close()
+        if(e): exit()
+
+    def convert_to_dict(self, obj):
+        return obj.__dict__
+
+    def wait_css(self, css_selector):
+        try:
+            WebDriverWait(self.driver, self.timeout_second).until(EC.presence_of_element_located((By.CSS_SELECTOR, css_selector)))
+        except Exception as e:
+            print(e)
+    
+    def safe_get_element_by_css_selector(self, css_selector):
+        try:
+            return self.driver.find_element_by_css_selector(css_selector)
+        except Exception as e:
+            print(e)
+    
+    def safe_get_elements_by_css_selector(self, css_selector):
+        try:
+            return self.driver.find_elements_by_css_selector(css_selector)
+        except Exception as e:
+            print(e)
+
+    def safe_get_element_by_xpath(self, xpath):
+        try:
+            return self.driver.find_element_by_xpath(xpath)
+        except Exception as e:
+            print(e)
+    
+    def safe_get_elements_by_xpath(self, xpath):
+        try:
+            return self.driver.find_elements_by_xpath(xpath)
+        except Exception as e:
+            print(e)
+
+    def safe_get_element_by_id(self, elem_id):
+        try:
+            return self.driver.find_element_by_id(elem_id)
+        except NoSuchElementException:
+            return None

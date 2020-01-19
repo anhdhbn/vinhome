@@ -2,3 +2,4 @@ python-dotenv
 easydict
 celery
 redis
+requests
