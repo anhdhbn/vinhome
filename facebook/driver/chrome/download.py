@@ -14,7 +14,7 @@ def check_exists():
 
 def download_driver():
     if check_exists():
-        print("chromedriver is downloaded")
+        print("chromedriver was downloaded")
         return
     response = requests.get(home)
 

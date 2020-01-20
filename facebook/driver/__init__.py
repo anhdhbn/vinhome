@@ -9,12 +9,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 
 class Selenium:
-    def __init__(self, total_scrolls = 5000, scroll_time = 5):
-        self.old_height = 0
-        self.current_scrolls = 0
-        self.total_scrolls = total_scrolls
-        self.scroll_time = scroll_time
-        self.time_limit = 0
+    def __init__(self):
         self.driver = None
         self.init_selenium()
 

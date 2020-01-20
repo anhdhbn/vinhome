@@ -3,3 +3,5 @@ easydict
 celery
 redis
 requests
+selenium
+fake_useragent

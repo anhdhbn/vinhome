@@ -5,7 +5,7 @@ import tarfile
 import glob
 
 def check_exists():
-  files = [f for f in glob.glob("./*driver*")]
+  files = [f for f in glob.glob("./geckodriver")]
   return len(files) != 0
 
 def download_file(url):
